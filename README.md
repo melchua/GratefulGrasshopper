@@ -13,8 +13,8 @@ Try to match visual appearance as closely as possible without wasting too much t
 - Screen 2 will show the cards connected to that workout (random 2-12 cards)
 - Click on start on screen 2 will start the workout
 - Workout starts with first of the cards as seen on screen 3
-- Timer starts from 15 minutes down
-- Tap opens full screen video of card
+- Timer starts from 15 minutes down (timer for all cards)
+- Video for that cards auto-plays in the card
 - Swipe will go to next card
 - Stop button on bottom right will stop the exercise and go back to screen 1
 - Strech goal: Pause button, Congrats screen after workout
