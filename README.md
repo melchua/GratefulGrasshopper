@@ -20,4 +20,5 @@ Try to match visual appearance as closely as possible without wasting too much t
 - Strech goal: Pause button, Congrats screen after workout
 
 ### Tools:
-Create a branch with your name and use whatever tool you feel makes sense (React Native, Swift). Get visual elements from Cloris if she has time.
+Create a branch with your name and use whatever tool you feel makes sense (React Native, Swift). 
+Get visual elements from Cloris.
