@@ -1,6 +1,6 @@
 # Project Grasshopper: Mel Edition
 
-![Grasshopper Cartoon Image](https://github.com/M56-Studios/fit52-prototype/blob/master/grasshopper.png)
+![Grasshopper Cartoon Image](https://s19532.pcdn.co/wp-content/uploads/2017/05/Screen-Shot-2017-05-19-at-8.51.28-AM-1.png)
 
 ### Summary
 
