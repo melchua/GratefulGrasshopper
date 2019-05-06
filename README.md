@@ -23,6 +23,7 @@ https://github.com/react-navigation/react-navigation
 Authentication: Amplify JS client library (link up with Cognito)
 https://aws-amplify.github.io/docs/js/authentication
 \*\* Look to keep clean separations from presentation logic and business logic in your code.
+This shoud work for both iOS and Android.
 
 ### Backend Technology Requirements
 
