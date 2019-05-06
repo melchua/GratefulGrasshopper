@@ -1,5 +1,7 @@
 # Project Grasshopper: Mel Edition
 
+![Grasshopper Cartoon Image](https://github.com/M56-Studios/fit52-prototype/blob/master/grasshopper.png)
+
 ### Summary
 
 This project’s objective is to further the team’s knowledge and experience with mobile app development, React Native and various AWS technologies by making a Todo Application.
