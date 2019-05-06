@@ -24,15 +24,15 @@ The cross-platform (iOS & Android) mobile Todo application will allow users, whe
 
 ### Frontend Technology Requirements
 
-State management: MST - Use Mobx’s design patterns for accessing/mutating app state (** check out flow (generator) functions for asynchronous model actions)
-https://github.com/mobxjs/mobx-state-tree
-Navigation: React Navigation
-https://github.com/react-navigation/react-navigation
-** Be sure to keep in mind the user’s potential un-authenticated and authenticated states and how this will affect the app’s navigation stack(s)
-Authentication: Amplify JS client library (link up with Cognito)
-https://aws-amplify.github.io/docs/js/authentication
-\*\* Look to keep clean separations from presentation logic and business logic in your code.
-This shoud work for both iOS and Android.
+- State management: MST - Use Mobx’s design patterns for accessing/mutating app state (\*\* check out flow (generator) functions for asynchronous model actions)
+  https://github.com/mobxjs/mobx-state-tree
+- Navigation: React Navigation
+  https://github.com/react-navigation/react-navigation
+  \*\* Be sure to keep in mind the user’s potential un-authenticated and authenticated states and how this will affect the app’s navigation stack(s)
+- Authentication: Amplify JS client library (link up with Cognito)
+  https://aws-amplify.github.io/docs/js/authentication
+  \*\* Look to keep clean separations from presentation logic and business logic in your code.
+  This shoud work for both iOS and Android.
 
 ### Backend Technology Requirements
 
