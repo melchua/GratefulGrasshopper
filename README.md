@@ -12,8 +12,15 @@ The cross-platform (iOS & Android) mobile Todo application will allow users, whe
 
 ### User Interface Requirements
 
--[] Authentication flow -[] Login/ Signup screens -[] Verification Code screen (after sign up) -[] Todos List Screen - List out and mark Todos as completed in a FlatList -[] Todo Creation -[] Todo Edit (re-use Creation UI?) -[] Todo Detail Screen (Location? Notes? Priority?) -[] Profile Screen - photograph(s), biography, Todo Completion Count, etc.
-\*\* Try to keep UI components as simple as possible and reusable if possible.
+- [ ] Authentication flow
+- [ ] Login/ Signup screens
+- [ ] Verification Code screen (after sign up)
+- [ ] Todos List Screen - List out and mark Todos as completed in a FlatList
+- [ ] Todo Creation
+- [ ] Todo Edit (re-use Creation UI?)
+- [ ] Todo Detail Screen (Location? Notes? Priority?)
+- [ ] Profile Screen - photograph(s), biography, Todo Completion Count, etc.
+      \*\* Try to keep UI components as simple as possible and reusable if possible.
 
 ### Frontend Technology Requirements
 
@@ -29,7 +36,8 @@ This shoud work for both iOS and Android.
 
 ### Backend Technology Requirements
 
--[] Authentication: AWS Cognito
-https://aws.amazon.com/cognito/ -[] Database: AWS AppSync + RDS database
-https://aws.amazon.com/appsync/
-https://aws.amazon.com/rds/
+- [ ] Authentication: AWS Cognito
+      https://aws.amazon.com/cognito/
+- [ ] Database: AWS AppSync + RDS database
+      https://aws.amazon.com/appsync/
+      https://aws.amazon.com/rds/
