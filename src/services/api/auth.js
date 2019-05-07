@@ -15,8 +15,8 @@ export const signUp = () => {
     },
     validationData: [] //optional
   })
-    .then(data => console.warn(data))
-    .catch(err => console.warn(err));
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
 };
 
 export const confirmSignUp = () => {
