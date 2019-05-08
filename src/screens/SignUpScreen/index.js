@@ -6,7 +6,7 @@ export default class SignUpScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>SignUp Screen</Text>
+        {/* <Text>SignUp Screen</Text> */}
         <SignInAndUpForm />
       </View>
     );
@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "#8ddb39"
   },
   grasshopperImage: {
     width: 150,
