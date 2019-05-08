@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+import { inject, observer } from "mobx-react";
 
-export default class SignInAndUpForm extends Component {
+class SignInAndUpForm extends Component {
   state = {
     username: null,
     password: null,
@@ -72,7 +73,10 @@ export default class SignInAndUpForm extends Component {
 
             // Question for Josh:
             // Should these be actions in the MST model? or should they just be
-            // helper actions for the API? a little fuzzy here */}
+            // helper actions for the API? a little fuzzy here 
+            
+            Keep the validation on the component, and then submit the username and password as props to api call
+            */}
 
         <View style={styles.inputContainer}>
           <TouchableOpacity style={styles.signUpButton}>
@@ -83,6 +87,8 @@ export default class SignInAndUpForm extends Component {
     );
   }
 }
+
+export default inject("authStore")(SignInAndUpForm);
 
 const styles = StyleSheet.create({
   textInput: {
