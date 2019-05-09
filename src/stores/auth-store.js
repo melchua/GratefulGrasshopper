@@ -1,9 +1,8 @@
-import { flow, types } from "mobx-state-tree";
-
-/* 
-    isChecking - for when it's authorizing async
-
-*/
+import { flow, types, getRoot } from "mobx-state-tree";
+import AuthApi from "../services/api/auth";
+// import awsmobile from "../../aws-exports";
+// import Amplify from "aws-amplify";
+// Amplify.configure(awsmobile);
 
 const AuthStoreModel = types
   .model("Auth", {
@@ -11,10 +10,19 @@ const AuthStoreModel = types
   })
   .actions(self => {
     return {
-      register: flow(function*(email, password) {
+      register: flow(function*(
+        username = "default@default.com",
+        password = "Test"
+      ) {
         try {
-          const response = 3;
+          self.isChecking = true;
+          console.warn("inside the flow", username);
+          const response = yield AuthApi.register(username, password);
+          console.warn(`this is the response: ${response}`);
+          self.isChecking = false;
+          return response;
         } catch (error) {
+          console.warn("this is an error, ", error);
           return error;
         }
       })

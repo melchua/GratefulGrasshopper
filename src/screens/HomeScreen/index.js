@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { Button, Image, Platform, StyleSheet, Text, View } from "react-native";
-import { signUp } from "../../services/api/auth";
 import grasshopper from "../../assets/images/grasshopper.png";
 
 export default class HomeScreen extends Component {
-  componentDidMount() {
-    signUp();
-  }
+  componentDidMount() {}
   render() {
     const { navigation } = this.props;
     return (

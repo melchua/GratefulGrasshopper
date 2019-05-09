@@ -1,10 +1,13 @@
 // auth functions for AWS
 import Auth from "@aws-amplify/auth";
 
-export const signUp = () => {
-  const username = "mel.chua@m56studios.com";
+const register = (username2, password2) => {
+  const username = "test@m56studios.com";
   const password = "Password1234!";
-  const email = "mel.chua@m56studios.com";
+  const email = "test@m56studios.com";
+  console.warn(
+    `in signup auth, here is username: ${username} ${email} ${password}`
+  );
   Auth.signUp({
     username,
     password,
@@ -15,11 +18,16 @@ export const signUp = () => {
     },
     validationData: [] //optional
   })
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
+    // .then(data => console.warn(data)
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      return err;
+    });
 };
 
-export const confirmSignUp = () => {
+const confirmSignUp = () => {
   Auth.confirmSignUp(username, code, {
     // Optional. Force user confirmation irrespective of existing alias. By default set to True.
     forceAliasCreation: true
@@ -29,7 +37,7 @@ export const confirmSignUp = () => {
 };
 
 // After retrieving the confirmation code from the user
-export const resendSignUp = username => {
+const resendSignUp = username => {
   Auth.resendSignUp(username)
     .then(() => {
       console.log("code resent successfully");
@@ -38,3 +46,11 @@ export const resendSignUp = username => {
       console.log(e);
     });
 };
+
+const AuthActions = {
+  register,
+  confirmSignUp,
+  resendSignUp
+};
+
+export default AuthActions;

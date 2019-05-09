@@ -15,15 +15,9 @@ class SignInAndUpForm extends Component {
     retypePassword: null
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    const { username } = this.state;
-    if (prevState.username !== username) {
-      //   console.warn(`username: ${username} password: ${password}`);
-    }
-  }
-
   render() {
-    // const { username, password } = this.state;
+    this.props.authStore.register();
+
     return (
       <View style={styles.mainContainer}>
         <View>
@@ -88,7 +82,7 @@ class SignInAndUpForm extends Component {
   }
 }
 
-export default inject("authStore")(SignInAndUpForm);
+export default observer(inject("authStore")(SignInAndUpForm));
 
 const styles = StyleSheet.create({
   textInput: {
