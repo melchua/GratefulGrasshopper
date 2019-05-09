@@ -1,29 +1,24 @@
 // auth functions for AWS
 import Auth from "@aws-amplify/auth";
 
-const register = (username2, password2) => {
-  const username = "test@m56studios.com";
-  const password = "Password1234!";
-  const email = "test@m56studios.com";
-  console.warn(
-    `in signup auth, here is username: ${username} ${email} ${password}`
-  );
+const register = (username, password) => {
+  const email = username;
+  console.warn(`in signup auth, here is username: ${username}`);
   Auth.signUp({
     username,
     password,
     attributes: {
       email // optional
-      // phone_number // optional - E.164 number convention
-      // other custom attributes
     },
     validationData: [] //optional
   })
-    // .then(data => console.warn(data)
     .then(data => {
-      return data;
+      console.warn(data);
+      return true;
     })
     .catch(err => {
-      return err;
+      console.warn(err);
+      return false;
     });
 };
 

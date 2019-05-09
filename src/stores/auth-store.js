@@ -16,14 +16,14 @@ const AuthStoreModel = types
       ) {
         try {
           self.isChecking = true;
-          console.warn("inside the flow", username);
+          //   console.warn("inside the flow", username);
           const response = yield AuthApi.register(username, password);
           console.warn(`this is the response: ${response}`);
           self.isChecking = false;
           return response;
         } catch (error) {
           console.warn("this is an error, ", error);
-          return error;
+          //   return error;
         }
       })
     };

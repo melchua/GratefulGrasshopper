@@ -16,8 +16,6 @@ class SignInAndUpForm extends Component {
   };
 
   render() {
-    this.props.authStore.register();
-
     return (
       <View style={styles.mainContainer}>
         <View>
@@ -73,7 +71,15 @@ class SignInAndUpForm extends Component {
             */}
 
         <View style={styles.inputContainer}>
-          <TouchableOpacity style={styles.signUpButton}>
+          <TouchableOpacity
+            style={styles.signUpButton}
+            onPress={() =>
+              this.props.authStore.register(
+                this.state.username,
+                this.state.password
+              )
+            }
+          >
             <Text style={styles.signUpButtonText}>Sign-Up</Text>
           </TouchableOpacity>
         </View>
