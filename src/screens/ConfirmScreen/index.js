@@ -1,26 +1,22 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
-import SignInAndUpForm from "../../components/SignInAndUpForm";
-import { inject, observer } from "mobx-react";
 
-class SignUpScreen extends Component {
+export default class ConfirmScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <SignInAndUpForm navigation={this.props.navigation} />
+        <Text>Confirm Screen</Text>
       </View>
     );
   }
 }
-
-export default observer(inject("authStore")(SignUpScreen));
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#8ddb39"
+    backgroundColor: "#b176ed"
   },
   grasshopperImage: {
     width: 150,

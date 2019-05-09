@@ -14,6 +14,27 @@ class SignInAndUpForm extends Component {
     password: null,
     retypePassword: null
   };
+  componentDidMount() {
+    const {
+      authStore: { isChecking }
+    } = this.props;
+    // console.warn("initial isChecking: ", isChecking);
+  }
+  handleSignUp = async (username, password) => {
+    const { navigation } = this.props;
+    const {
+      authStore: { isChecking }
+    } = this.props; // josh was right
+    const response = await this.props.authStore.register(username, password);
+
+    if (typeof response === "string") {
+      console.warn("there is an error detected");
+    }
+    if (isChecking === false && typeof response === "object") {
+      this.props.authStore.setConfirmationRequired();
+      navigation.navigate("Confirm");
+    }
+  };
 
   render() {
     return (
@@ -74,10 +95,7 @@ class SignInAndUpForm extends Component {
           <TouchableOpacity
             style={styles.signUpButton}
             onPress={() =>
-              this.props.authStore.register(
-                this.state.username,
-                this.state.password
-              )
+              this.handleSignUp(this.state.username, this.state.password)
             }
           >
             <Text style={styles.signUpButtonText}>Sign-Up</Text>

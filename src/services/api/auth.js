@@ -3,23 +3,15 @@ import Auth from "@aws-amplify/auth";
 
 const register = (username, password) => {
   const email = username;
-  console.warn(`in signup auth, here is username: ${username}`);
-  Auth.signUp({
+  //   console.warn(`in signup auth, here is username: ${username}`);
+  return Auth.signUp({
     username,
     password,
     attributes: {
       email // optional
     },
     validationData: [] //optional
-  })
-    .then(data => {
-      console.warn(data);
-      return true;
-    })
-    .catch(err => {
-      console.warn(err);
-      return false;
-    });
+  });
 };
 
 const confirmSignUp = () => {

@@ -6,7 +6,8 @@ import AuthApi from "../services/api/auth";
 
 const AuthStoreModel = types
   .model("Auth", {
-    isChecking: types.optional(types.boolean, false)
+    isChecking: types.optional(types.boolean, false),
+    needsToConfirm: types.optional(types.boolean, false)
   })
   .actions(self => {
     return {
@@ -16,16 +17,22 @@ const AuthStoreModel = types
       ) {
         try {
           self.isChecking = true;
-          //   console.warn("inside the flow", username);
           const response = yield AuthApi.register(username, password);
-          console.warn(`this is the response: ${response}`);
+          //   console.warn(`this is the response: ${JSON.stringify(response)}`);
           self.isChecking = false;
+          console.warn("ischecking inside mobx: ", self.isChecking);
           return response;
         } catch (error) {
-          console.warn("this is an error, ", error);
-          //   return error;
+          //   console.warn("this is an error, ", error);
+          return error;
         }
-      })
+      }),
+      setConfirmationRequired() {
+        self.needsToConfirm = true;
+      },
+      resetConfirmationRequired() {
+        self.needsToConfirm = false;
+      }
     };
   });
 export default AuthStoreModel;

@@ -11,6 +11,7 @@ import Amplify from "aws-amplify";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import SignInScreen from "./src/screens/SignInScreen";
+import ConfirmScreen from "./src/screens/ConfirmScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 
 // Imports for store setup
@@ -51,7 +52,8 @@ const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     SignUp: SignUpScreen,
-    SignIn: SignInScreen
+    SignIn: SignInScreen,
+    Confirm: ConfirmScreen
   },
   { initialRouteName: "Home" }
 );
