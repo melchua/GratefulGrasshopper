@@ -14,13 +14,9 @@ const register = (username, password) => {
   });
 };
 
-const confirmSignUp = () => {
-  Auth.confirmSignUp(username, code, {
-    // Optional. Force user confirmation irrespective of existing alias. By default set to True.
-    forceAliasCreation: true
-  })
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
+const confirmSignUp = (username, code) => {
+  console.warn("in the auth api", code);
+  return Auth.confirmSignUp(username, code, { forceAliasCreation: true });
 };
 
 // After retrieving the confirmation code from the user

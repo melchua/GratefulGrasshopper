@@ -49,7 +49,7 @@ class SignUpForm extends Component {
         isChecking === false
       ) {
         this.props.authStore.setConfirmationRequired();
-        navigation.navigate("Confirm");
+        navigation.navigate("Confirm", { username });
       } else if (typeof response === "string") {
         this.showError(response);
       } else if (typeof response === "object") {
