@@ -25,6 +25,7 @@ export const doesPasswordContainCorrectNumberOfCharacters = password => {
 // not sure if these work yet... something with the match  test it
 export const doesPasswordContainANumber = password => {
   const containsNumber = /[0-9]/;
+  //   console.warn("asdf", password.match(containsNumber));
   if (password !== null && password.match(containsNumber) !== null) {
     return true;
   } else {
@@ -38,5 +39,22 @@ export const doesPasswordContainASymbol = password => {
     return true;
   } else {
     return "Password must contain at least 1 symbol";
+  }
+};
+
+export const doesPasswordContainCapitalLetter = password => {
+  const containsSymbol = /[A-Z]/;
+  if (password !== null && password.match(containsSymbol) !== null) {
+    return true;
+  } else {
+    return "Password must contain at least 1 capital letter";
+  }
+};
+
+export const doPasswordsMatch = (password, retypePassword) => {
+  if (retypePassword !== null && password === retypePassword) {
+    return true;
+  } else {
+    return "Passwords do not match";
   }
 };

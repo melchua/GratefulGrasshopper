@@ -11,7 +11,10 @@ import {
   isUsernameFieldFilled,
   isPasswordFieldFilled,
   doesPasswordContainCorrectNumberOfCharacters,
-  doesPasswordContainANumber
+  doesPasswordContainANumber,
+  doesPasswordContainASymbol,
+  doesPasswordContainCapitalLetter,
+  doPasswordsMatch
 } from "../../utilities/validator";
 
 class SignUpForm extends Component {
@@ -22,17 +25,23 @@ class SignUpForm extends Component {
     isErrorVisible: false
   };
 
-  handleSignUp = async (username, password) => {
+  handleSignUp = async (username, password, retypePassword) => {
     const { navigation } = this.props;
     const {
       authStore: { isChecking }
     } = this.props;
 
     // We validate before sending data
-    const validationResponse = this.validate(username, password);
+    const validationResponse = this.validate(
+      username,
+      password,
+      retypePassword
+    );
     if (validationResponse !== true) {
       this.showError(validationResponse);
     } else {
+      this.removeError();
+      // console.warn("error visible: ", this.state.isErrorVisible);
       const response = await this.props.authStore.register(username, password);
       if (
         typeof response === "boolean" &&
@@ -51,7 +60,7 @@ class SignUpForm extends Component {
 
   // inputs: username, password
   // returns: error string or true(boolean)
-  validate = (username, password) => {
+  validate = (username, password, retypePassword) => {
     if (isUsernameFieldFilled(username) !== true) {
       return isUsernameFieldFilled(username);
     }
@@ -63,6 +72,15 @@ class SignUpForm extends Component {
     }
     if (doesPasswordContainANumber(password) !== true) {
       return doesPasswordContainANumber(password);
+    }
+    if (doesPasswordContainASymbol(password) !== true) {
+      return doesPasswordContainASymbol(password);
+    }
+    if (doesPasswordContainCapitalLetter(password) !== true) {
+      return doesPasswordContainCapitalLetter(password);
+    }
+    if (doPasswordsMatch(password, retypePassword) !== true) {
+      return doPasswordsMatch(password, retypePassword);
     } else return true;
   };
 
@@ -71,7 +89,7 @@ class SignUpForm extends Component {
   };
 
   removeError = () => {
-    this.setState({ isErrorVisible: false });
+    this.setState({ errorMessage: null, isErrorVisible: false });
   };
 
   render() {
@@ -118,7 +136,11 @@ class SignUpForm extends Component {
           <TouchableOpacity
             style={styles.signUpButton}
             onPress={() =>
-              this.handleSignUp(this.state.username, this.state.password)
+              this.handleSignUp(
+                this.state.username,
+                this.state.password,
+                this.state.retypePassword
+              )
             }
           >
             <Text style={styles.signUpButtonText}>Sign-Up</Text>
