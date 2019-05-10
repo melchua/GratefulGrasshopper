@@ -20,8 +20,8 @@ const AuthStoreModel = types
           const response = yield AuthApi.register(username, password);
           //   console.warn(`this is the response: ${JSON.stringify(response)}`);
           self.isChecking = false;
-          console.warn("ischecking inside mobx: ", self.isChecking);
-          return response;
+          //   console.warn("ischecking inside mobx: ", self.isChecking);
+          return response && true;
         } catch (error) {
           //   console.warn("this is an error, ", error);
           return error;

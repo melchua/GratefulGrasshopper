@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
-import SignInAndUpForm from "../../components/SignInAndUpForm";
+import SignUpForm from "../../components/SignUpForm";
 import { inject, observer } from "mobx-react";
 
 class SignUpScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <SignInAndUpForm navigation={this.props.navigation} />
+        <SignUpForm navigation={this.props.navigation} />
       </View>
     );
   }

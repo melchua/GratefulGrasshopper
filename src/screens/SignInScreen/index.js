@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
-import SignInAndUpForm from "../../components/SignInAndUpForm";
+// import SignInAndUpForm from "../../components/SignInAndUpForm";
 
-export default class SignUpScreen extends Component {
+export default class SignIncreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* <Text>SignUp Screen</Text> */}
-        <SignInAndUpForm />
+        <Text>SignIn Screen</Text>
       </View>
     );
   }

@@ -7,33 +7,71 @@ import {
   View
 } from "react-native";
 import { inject, observer } from "mobx-react";
+import {
+  isUsernameFieldFilled,
+  isPasswordFieldFilled,
+  doesPasswordContainCorrectNumberOfCharacters,
+  doesPasswordContainANumber
+} from "../../utilities/validator";
 
-class SignInAndUpForm extends Component {
+class SignUpForm extends Component {
   state = {
     username: null,
     password: null,
-    retypePassword: null
+    retypePassword: null,
+    isErrorVisible: false
   };
-  componentDidMount() {
-    const {
-      authStore: { isChecking }
-    } = this.props;
-    // console.warn("initial isChecking: ", isChecking);
-  }
+
   handleSignUp = async (username, password) => {
     const { navigation } = this.props;
     const {
       authStore: { isChecking }
-    } = this.props; // josh was right
-    const response = await this.props.authStore.register(username, password);
+    } = this.props;
 
-    if (typeof response === "string") {
-      console.warn("there is an error detected");
+    // We validate before sending data
+    const validationResponse = this.validate(username, password);
+    if (validationResponse !== true) {
+      this.showError(validationResponse);
+    } else {
+      const response = await this.props.authStore.register(username, password);
+      if (
+        typeof response === "boolean" &&
+        response === true &&
+        isChecking === false
+      ) {
+        this.props.authStore.setConfirmationRequired();
+        navigation.navigate("Confirm");
+      } else if (typeof response === "string") {
+        this.showError(response);
+      } else if (typeof response === "object") {
+        this.showError(response.message);
+      }
     }
-    if (isChecking === false && typeof response === "object") {
-      this.props.authStore.setConfirmationRequired();
-      navigation.navigate("Confirm");
+  };
+
+  // inputs: username, password
+  // returns: error string or true(boolean)
+  validate = (username, password) => {
+    if (isUsernameFieldFilled(username) !== true) {
+      return isUsernameFieldFilled(username);
     }
+    if (isPasswordFieldFilled(password) !== true) {
+      return isPasswordFieldFilled(password);
+    }
+    if (doesPasswordContainCorrectNumberOfCharacters(password) !== true) {
+      return doesPasswordContainCorrectNumberOfCharacters(password);
+    }
+    if (doesPasswordContainANumber(password) !== true) {
+      return doesPasswordContainANumber(password);
+    } else return true;
+  };
+
+  showError = error => {
+    this.setState({ errorMessage: error, isErrorVisible: true });
+  };
+
+  removeError = () => {
+    this.setState({ isErrorVisible: false });
   };
 
   render() {
@@ -76,21 +114,6 @@ class SignInAndUpForm extends Component {
             secureTextEntry={true}
           />
         </View>
-
-        {/* // when pressing button, it should:
-            // 1. check if user already exists (eers)
-            // 2. if user exists, resets form and try again
-            // 3. if user doesn't exist, then check if passwords match
-            // 4. if passwords match then navigate to protected stack and set the
-            // the current user in MST and make sure it's set in the session (how does aws do this?)
-
-            // Question for Josh:
-            // Should these be actions in the MST model? or should they just be
-            // helper actions for the API? a little fuzzy here 
-            
-            Keep the validation on the component, and then submit the username and password as props to api call
-            */}
-
         <View style={styles.inputContainer}>
           <TouchableOpacity
             style={styles.signUpButton}
@@ -101,12 +124,17 @@ class SignInAndUpForm extends Component {
             <Text style={styles.signUpButtonText}>Sign-Up</Text>
           </TouchableOpacity>
         </View>
+        {this.state.isErrorVisible && (
+          <View style={styles.errorContainer}>
+            <Text>Error: {this.state.errorMessage} </Text>
+          </View>
+        )}
       </View>
     );
   }
 }
 
-export default observer(inject("authStore")(SignInAndUpForm));
+export default observer(inject("authStore")(SignUpForm));
 
 const styles = StyleSheet.create({
   textInput: {
@@ -119,6 +147,10 @@ const styles = StyleSheet.create({
   //   mainContainer: {
   //     backgroundColor: "#8ddb39"
   //   },
+  errorContainer: {
+    justifyContent: "flex-start",
+    alignItems: "center"
+  },
   inputContainer: {
     paddingTop: 15
   },
