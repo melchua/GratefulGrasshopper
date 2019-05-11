@@ -55,7 +55,7 @@ const AppNavigator = createStackNavigator(
     SignIn: SignInScreen,
     Confirm: ConfirmScreen
   },
-  { initialRouteName: "Confirm" }
+  { initialRouteName: "SignIn" }
 );
 
 const AppNavContainer = createAppContainer(AppNavigator);

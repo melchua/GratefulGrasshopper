@@ -3,7 +3,6 @@ import Auth from "@aws-amplify/auth";
 
 const register = (username, password) => {
   const email = username;
-  //   console.warn(`in signup auth, here is username: ${username}`);
   return Auth.signUp({
     username,
     password,
@@ -15,7 +14,6 @@ const register = (username, password) => {
 };
 
 const confirmSignUp = (username, code) => {
-  console.warn("in the auth api", code);
   return Auth.confirmSignUp(username, code, { forceAliasCreation: true });
 };
 
@@ -30,10 +28,16 @@ const resendSignUp = username => {
     });
 };
 
+const signIn = (username, password) => {
+  const user = Auth.signIn(username, password);
+  return user;
+};
+
 const AuthActions = {
   register,
   confirmSignUp,
-  resendSignUp
+  resendSignUp,
+  signIn
 };
 
 export default AuthActions;

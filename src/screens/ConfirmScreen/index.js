@@ -29,7 +29,7 @@ class ConfirmScreen extends Component {
     const { navigation } = this.props;
     const username = navigation.getParam(
       "username",
-      "mel.chua+12@m56studios.com"
+      "mel.chua+11@m56studios.com"
     );
 
     // console.warn("username entered previously:", username);

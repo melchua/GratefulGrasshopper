@@ -29,12 +29,18 @@ const AuthStoreModel = types
       }),
       confirm: flow(function*(username, code) {
         try {
-          console.warn("insdie confirm flow");
           const response = yield AuthApi.confirmSignUp(username, code);
-          console.warn("but we didn't get past the yield", response);
           return response && true;
-          // if successful, send to success screen, ask user to log in
         } catch (error) {
+          return error;
+        }
+      }),
+      signIn: flow(function*(username, password) {
+        try {
+          const user = yield AuthApi.signIn(username, password);
+          return user;
+        } catch (error) {
+          // console.warn("error:", error);
           return error;
         }
       }),
