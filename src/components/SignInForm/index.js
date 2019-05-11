@@ -33,10 +33,8 @@ class SignInForm extends Component {
       this.showError(user.message);
     } else {
       console.warn("good to go");
+      // now we should send to the protected stack (for the note functionality)
     }
-    //handle if user comes back or if error comes back, should we do this here or in the store?
-    // as josh
-    // console.warn("user:", user);
   };
 
   // inputs: username, password
