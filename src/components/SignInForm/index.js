@@ -29,9 +29,9 @@ class SignInForm extends Component {
 
     if (user.hasOwnProperty("code")) {
       console.warn("there was an error");
-      // display error
       this.showError(user.message);
     } else {
+      this.removeError();
       console.warn("good to go");
       // now we should send to the protected stack (for the note functionality)
     }

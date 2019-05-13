@@ -9,14 +9,16 @@ import React, { Component } from "react";
 import awsmobile from "./aws-exports";
 import Amplify from "aws-amplify";
 import {
-  createStackNavigator,
   createAppContainer,
-  createStackNavigator
+  createStackNavigator,
+  createSwitchNavigator
 } from "react-navigation";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import SignInScreen from "./src/screens/SignInScreen";
 import ConfirmScreen from "./src/screens/ConfirmScreen";
 import HomeScreen from "./src/screens/HomeScreen";
+import AppHomeScreen from "./src/screens/AppHomeScreen";
+import AuthLoadingScreen from "./src/screens/AuthLoadingScreen";
 
 // Imports for store setup
 import { Provider } from "mobx-react";
@@ -25,12 +27,16 @@ import RootStoreModel from "./src/stores/root-store";
 Amplify.configure(awsmobile);
 
 // configuring stacks
-// const AppStack = createStackNavigator({ AppHome: AppHomeScreen }); // switch to the app screen when we have one ready
-// const AuthStack = createStackNavigator({
-//   Home: HomeScreen,
-//   SignUp: SignUpScreen,
-//   Confirm: ConfirmScreen
-// });
+const AppStack = createStackNavigator({ AppHome: AppHomeScreen }); // switch to the app screen when we have one ready
+const AuthStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    SignUp: SignUpScreen,
+    SignIn: SignInScreen,
+    Confirm: ConfirmScreen
+  },
+  { initialRouteName: "SignIn" }
+);
 
 class App extends Component {
   state = {
@@ -60,16 +66,17 @@ class App extends Component {
   }
 }
 
-const AppNavigator = createStackNavigator(
-  {
-    Home: HomeScreen,
-    SignUp: SignUpScreen,
-    SignIn: SignInScreen,
-    Confirm: ConfirmScreen
-  },
-  { initialRouteName: "SignIn" }
+const AppNavContainer = createAppContainer(
+  createSwitchNavigator(
+    {
+      AuthLoading: AuthLoadingScreen,
+      Auth: AuthStack,
+      App: AppStack
+    },
+    {
+      initialRouteName: "Auth"
+    }
+  )
 );
-
-const AppNavContainer = createAppContainer(AppNavigator);
 
 export default App;
