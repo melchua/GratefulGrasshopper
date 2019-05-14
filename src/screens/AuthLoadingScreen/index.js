@@ -1,34 +1,51 @@
 import React from "react";
 import {
   ActivityIndicator,
-  AsyncStorage,
   StatusBar,
+  Text,
   StyleSheet,
   View
 } from "react-native";
+import { inject, observer } from "mobx-react";
 
-export default class AuthLoadingScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this._bootstrapAsync();
+class AuthLoadingScreen extends React.Component {
+  componentDidMount() {
+    this.navigateToScreen();
   }
 
-  // Fetch the token from storage then navigate to our appropriate place
-  _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem("userToken");
-
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    this.props.navigation.navigate(userToken ? "App" : "Auth");
+  navigateToScreen = async () => {
+    // console.warn("huh", await this.props.authStore.checkIfLoggedIn());
+    this.props.navigation.navigate(
+      (await this.props.authStore.checkIfLoggedIn()) ? "App" : "Auth"
+    );
   };
 
   // Render any loading content that you like here
   render() {
+    // console.warn(this.props.authStore.isLoggedIn);
+    // this.props.navigation.navigate(
+    //   this.props.authStore.isLoggedIn ? "App" : "Auth"
+    // );
+
     return (
-      <View>
-        <ActivityIndicator />
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading</Text>
+        <Text>
+          is Logged In: {this.props.authStore.isLoggedIn ? "true" : "false"}
+        </Text>
         <StatusBar barStyle="default" />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
+});
+
+export default inject("authStore")(observer(AuthLoadingScreen));

@@ -25,7 +25,6 @@ export const doesPasswordContainCorrectNumberOfCharacters = password => {
 // not sure if these work yet... something with the match  test it
 export const doesPasswordContainANumber = password => {
   const containsNumber = /[0-9]/;
-  //   console.warn("asdf", password.match(containsNumber));
   if (password !== null && password.match(containsNumber) !== null) {
     return true;
   } else {

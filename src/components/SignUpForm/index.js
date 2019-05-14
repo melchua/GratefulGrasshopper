@@ -148,7 +148,9 @@ class SignUpForm extends Component {
         </View>
         {this.state.isErrorVisible && (
           <View style={styles.errorContainer}>
-            <Text>Error: {this.state.errorMessage} </Text>
+            <Text style={styles.errorText}>
+              Error: {this.state.errorMessage}{" "}
+            </Text>
           </View>
         )}
       </View>
@@ -156,7 +158,7 @@ class SignUpForm extends Component {
   }
 }
 
-export default observer(inject("authStore")(SignUpForm));
+export default inject("authStore")(observer(SignUpForm));
 
 const styles = StyleSheet.create({
   textInput: {
@@ -172,6 +174,9 @@ const styles = StyleSheet.create({
   errorContainer: {
     justifyContent: "flex-start",
     alignItems: "center"
+  },
+  errorText: {
+    fontStyle: "italic"
   },
   inputContainer: {
     paddingTop: 15

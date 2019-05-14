@@ -33,11 +33,23 @@ const signIn = (username, password) => {
   return user;
 };
 
+const currentAuthenticatedUser = () => {
+  return Auth.currentAuthenticatedUser({
+    bypassCache: false
+  });
+};
+
+const signOut = () => {
+  return Auth.signOut();
+};
+
 const AuthActions = {
   register,
   confirmSignUp,
   resendSignUp,
-  signIn
+  signIn,
+  signOut,
+  currentAuthenticatedUser
 };
 
 export default AuthActions;

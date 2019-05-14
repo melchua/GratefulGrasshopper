@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Button, Text, StyleSheet, TouchableOpacity, View } from "react-native";
 // import SignInAndUpForm from "../../components/SignInAndUpForm";
 import SignInForm from "../../components/SignInForm";
 
@@ -7,7 +7,15 @@ export default class SignInScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <SignInForm />
+        <SignInForm navigation={this.props.navigation} />
+        <View style={styles.optionsContainer}>
+          <Text style={styles.optionsText}>Don't have an account? </Text>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("SignUp")}
+          >
+            <Text style={styles.signUpText}>Register</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -20,9 +28,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#b176ed"
   },
-  grasshopperImage: {
-    width: 150,
-    height: 150,
-    top: -50
+  optionsContainer: {
+    flexDirection: "row"
+  },
+  signUpText: {
+    fontWeight: "700",
+    fontSize: 15
+  },
+  optionsText: {
+    fontSize: 15
   }
 });

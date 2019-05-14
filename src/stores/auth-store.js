@@ -1,16 +1,19 @@
 import { flow, types, getRoot } from "mobx-state-tree";
 import AuthApi from "../services/api/auth";
-// import awsmobile from "../../aws-exports";
-// import Amplify from "aws-amplify";
-// Amplify.configure(awsmobile);
+// import { Auth } from "aws-amplify";
 
 const AuthStoreModel = types
   .model("Auth", {
     isChecking: types.optional(types.boolean, false),
-    needsToConfirm: types.optional(types.boolean, false)
+    needsToConfirm: types.optional(types.boolean, false),
+    isLoggedIn: types.optional(types.boolean, false),
+    isCheckingLoggedIn: types.optional(types.boolean, true)
   })
   .actions(self => {
     return {
+      afterCreate() {
+        // self.checkIfLoggedIn();
+      },
       register: flow(function*(
         username = "default@default.com",
         password = "Test"
@@ -35,11 +38,44 @@ const AuthStoreModel = types
       signIn: flow(function*(username, password) {
         try {
           const user = yield AuthApi.signIn(username, password);
+          console.warn("USER", JSON.stringify(user));
+          self.setLoggedIn();
           return user;
         } catch (error) {
+          console.warn("ERROR in SIGNIN: ", error);
           return error;
         }
       }),
+      // signOut just resolves a promise if success. instead of returning an error, we return true if success and false if failure
+      signOut: flow(function*() {
+        try {
+          self.setLoggedOut();
+          yield AuthApi.signOut();
+          // self.checkIfLoggedIn();
+          return true;
+        } catch {
+          return false;
+        }
+      }),
+      checkIfLoggedIn: flow(function*() {
+        try {
+          self.isCheckingLoggedIn = true;
+          yield AuthApi.currentAuthenticatedUser();
+          self.setLoggedIn();
+          console.warn("loggedIn (instore): ", self.isLoggedIn);
+          self.isCheckingLoggedin = false;
+          return true;
+        } catch (err) {
+          console.warn("error::: ", err);
+          return false;
+        }
+      }),
+      setLoggedIn() {
+        self.isLoggedIn = true;
+      },
+      setLoggedOut() {
+        self.isLoggedIn = false;
+      },
       setConfirmationRequired() {
         self.needsToConfirm = true;
       },

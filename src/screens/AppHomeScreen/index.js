@@ -1,18 +1,41 @@
 import React, { Component } from "react";
-import { Button, Image, Platform, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
+import { inject, observer } from "mobx-react";
 import grasshopper from "../../assets/images/grasshopper.png";
 
-export default class HomeScreen extends Component {
-  componentDidMount() {}
+class HomeScreen extends Component {
+  handleLogout = () => {
+    this.props.authStore.signOut();
+    this.props.navigation.navigate("SignIn");
+  };
+
   render() {
     return (
       <View style={styles.homescreenContainer}>
         <Image source={grasshopper} style={styles.grasshopperImage} />
         <Text>This is the protected app screen</Text>
+
+        <View style={styles.inputContainer}>
+          <TouchableOpacity
+            style={styles.logoutButton}
+            onPress={() => this.handleLogout()}
+          >
+            <Text style={styles.logoutButtonText}>Logout</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
+
+export default inject("authStore")(observer(HomeScreen));
 
 const styles = StyleSheet.create({
   homescreenContainer: {
@@ -24,5 +47,26 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     top: -50
+  },
+  inputContainer: {
+    paddingTop: 15
+  },
+  inputLabel: {
+    color: "white",
+    fontSize: 16
+  },
+  logoutButton: {
+    borderWidth: 1,
+    borderColor: "transparent",
+    backgroundColor: "transparent",
+    padding: 15,
+    margin: 5
+  },
+  logoutButtonText: {
+    color: "#000000",
+    fontSize: 70,
+    textAlign: "center",
+    textTransform: "uppercase",
+    fontWeight: "700"
   }
 });

@@ -27,7 +27,10 @@ import RootStoreModel from "./src/stores/root-store";
 Amplify.configure(awsmobile);
 
 // configuring stacks
-const AppStack = createStackNavigator({ AppHome: AppHomeScreen }); // switch to the app screen when we have one ready
+const AppStack = createStackNavigator(
+  { AppHome: AppHomeScreen },
+  { initialRouteName: "AppHome" }
+); // switch to the app screen when we have one ready
 const AuthStack = createStackNavigator(
   {
     Home: HomeScreen,
@@ -74,7 +77,7 @@ const AppNavContainer = createAppContainer(
       App: AppStack
     },
     {
-      initialRouteName: "Auth"
+      initialRouteName: "AuthLoading"
     }
   )
 );

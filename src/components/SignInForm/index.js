@@ -24,16 +24,25 @@ class SignInForm extends Component {
   };
 
   handleSignIn = async (username, password) => {
+    const { navigation } = this.props;
     const { authStore } = this.props;
-    const user = await authStore.signIn(username, password);
 
-    if (user.hasOwnProperty("code")) {
-      console.warn("there was an error");
-      this.showError(user.message);
+    // We validate before sending data
+    let validationResponse = this.validate(username, password);
+    if (validationResponse !== true) {
+      this.showError(validationResponse);
     } else {
       this.removeError();
-      console.warn("good to go");
-      // now we should send to the protected stack (for the note functionality)
+      const user = await authStore.signIn(username, password);
+      if (user.hasOwnProperty("code")) {
+        console.warn("there was an error");
+        this.showError(user.message);
+      } else {
+        this.removeError();
+        console.warn("good to go");
+        navigation.navigate("App");
+        // now we should send to the protected stack (for the note functionality)
+      }
     }
   };
 
@@ -57,7 +66,7 @@ class SignInForm extends Component {
     }
     if (doesPasswordContainCapitalLetter(password) !== true) {
       return doesPasswordContainCapitalLetter(password);
-    }
+    } else return true;
   };
 
   showError = error => {
@@ -108,7 +117,9 @@ class SignInForm extends Component {
         </View>
         {this.state.isErrorVisible && (
           <View style={styles.errorContainer}>
-            <Text>Error: {this.state.errorMessage} </Text>
+            <Text style={styles.errorText}>
+              Error: {this.state.errorMessage}
+            </Text>
           </View>
         )}
       </View>
@@ -116,7 +127,7 @@ class SignInForm extends Component {
   }
 }
 
-export default observer(inject("authStore")(SignInForm));
+export default inject("authStore")(observer(SignInForm));
 
 const styles = StyleSheet.create({
   textInput: {
@@ -132,6 +143,9 @@ const styles = StyleSheet.create({
   errorContainer: {
     justifyContent: "flex-start",
     alignItems: "center"
+  },
+  errorText: {
+    fontStyle: "italic"
   },
   inputContainer: {
     paddingTop: 15

@@ -61,7 +61,7 @@ class ConfirmScreen extends Component {
   }
 }
 
-export default observer(inject("authStore")(ConfirmScreen));
+export default inject("authStore")(observer(ConfirmScreen));
 
 const styles = StyleSheet.create({
   container: {
