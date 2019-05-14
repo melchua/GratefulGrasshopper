@@ -1,0 +1,42 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  getTodos(limit: Int, nextToken: String): TodoConnection
+}
+
+type Mutation {
+  addTodo(
+    id: ID!
+    name: String
+    description: String
+    priority: Int
+    status: TodoStatus
+  ): Todo
+  addUser(id: ID!, username: String): User
+}
+
+type User @model {
+  id: ID!
+  username: String!
+  type: String
+}
+type Todo @model {
+  id: ID!
+  name: String
+  description: String
+  priority: Int
+  status: TodoStatus
+}
+
+type TodoConnection @model {
+  todos: [Todo]
+  nextToken: String
+}
+
+enum TodoStatus {
+  done
+  pending
+}

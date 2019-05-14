@@ -1,0 +1,88 @@
+# this is an auto generated file. This will be overwritten
+query GetTodos($limit: Int, $nextToken: String) {
+  getTodos(limit: $limit, nextToken: $nextToken) {
+    todos {
+      id
+      name
+      description
+      priority
+      status
+    }
+    nextToken
+  }
+}
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    username
+  }
+}
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      username
+    }
+    nextToken
+  }
+}
+query GetTodo($id: ID!) {
+  getTodo(id: $id) {
+    id
+    name
+    description
+    priority
+    status
+  }
+}
+query ListTodos(
+  $filter: ModelTodoFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      description
+      priority
+      status
+    }
+    nextToken
+  }
+}
+query GetTodoConnection($id: ID!) {
+  getTodoConnection(id: $id) {
+    todos {
+      id
+      name
+      description
+      priority
+      status
+    }
+    nextToken
+  }
+}
+query ListTodoConnections(
+  $filter: ModelTodoConnectionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTodoConnections(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      todos {
+        id
+        name
+        description
+        priority
+        status
+      }
+      nextToken
+    }
+    nextToken
+  }
+}

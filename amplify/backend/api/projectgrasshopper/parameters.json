@@ -1,0 +1,10 @@
+{
+    "AppSyncApiName": "projectgrasshopper",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognitoa99ea618",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
