@@ -1,34 +1,25 @@
-schema {
-  query: Query
-  mutation: Mutation
-}
+# schema {
+#   query: Query
+# }
 
-type Query {
-  getTodos(limit: Int, nextToken: String): TodoConnection
-}
-
-type Mutation {
-  addTodo(
-    id: ID!
-    name: String
-    description: String
-    priority: Int
-    status: TodoStatus
-  ): Todo
-  addUser(id: ID!, username: String): User
-}
+# type Query {
+#   getUserByUsername(username) {
+#     username
+#     email
+#   }
+# }
 
 type User @model {
   id: ID!
-  username: String!
-  type: String
+  email: String
 }
+
 type Todo @model {
   id: ID!
   name: String
   description: String
-  priority: Int
   status: TodoStatus
+  user: User
 }
 
 type TodoConnection @model {

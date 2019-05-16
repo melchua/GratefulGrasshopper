@@ -1,6 +1,6 @@
-import { flow, types, getRoot } from "mobx-state-tree";
+import { flow, types } from "mobx-state-tree";
 import AuthApi from "../services/api/auth";
-// import { Auth } from "aws-amplify";
+import UserApi from "../services/api/user";
 
 const AuthStoreModel = types
   .model("Auth", {
@@ -35,11 +35,17 @@ const AuthStoreModel = types
           return error;
         }
       }),
-      signIn: flow(function*(username, password) {
+      signIn: flow(function*(email, password) {
         try {
-          const user = yield AuthApi.signIn(username, password);
-          console.warn("USER", JSON.stringify(user));
+          const user = yield AuthApi.signIn(email, password);
+          // console.warn("USER", JSON.stringify(user));
           self.setLoggedIn();
+          const userInDb = yield UserApi.getUser(user.username);
+          // console.warn("return: ", userInDb);
+          if (userInDb === false) {
+            UserApi.createUser(user.username, email);
+          }
+          // }
           return user;
         } catch (error) {
           console.warn("ERROR in SIGNIN: ", error);
@@ -62,11 +68,11 @@ const AuthStoreModel = types
           self.isCheckingLoggedIn = true;
           yield AuthApi.currentAuthenticatedUser();
           self.setLoggedIn();
-          console.warn("loggedIn (instore): ", self.isLoggedIn);
+          // console.warn("loggedIn (instore): ", self.isLoggedIn);
           self.isCheckingLoggedin = false;
           return true;
         } catch (err) {
-          console.warn("error::: ", err);
+          // console.warn("error: ", err);
           return false;
         }
       }),

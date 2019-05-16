@@ -2,11 +2,12 @@ projects:
   projectgrasshopper:
     schemaPath: src/graphql/schema.json
     includes:
-      - graphql/**/*.graphql
+      - src/graphql/**/*.js
     excludes:
       - ./amplify/**
     extensions:
       amplify:
-        codeGenTarget: swift
-        generatedFileName: API.swift
+        codeGenTarget: javascript
+        generatedFileName: ''
         docsFilePath: graphql
+        maxDepth: 2
