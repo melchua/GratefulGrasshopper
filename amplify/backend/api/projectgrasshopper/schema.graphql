@@ -1,0 +1,33 @@
+# schema {
+#   query: Query
+# }
+
+# type Query {
+#   getUserByUsername(username) {
+#     username
+#     email
+#   }
+# }
+
+type User @model {
+  id: ID!
+  email: String
+}
+
+type Todo @model {
+  id: ID!
+  name: String
+  description: String
+  status: TodoStatus
+  user: User
+}
+
+type TodoConnection @model {
+  todos: [Todo]
+  nextToken: String
+}
+
+enum TodoStatus {
+  done
+  pending
+}

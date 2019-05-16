@@ -39,7 +39,7 @@ class SignInForm extends Component {
         this.showError(user.message);
       } else {
         this.removeError();
-        console.warn("good to go");
+        // console.warn("good to go");
         navigation.navigate("App");
         // now we should send to the protected stack (for the note functionality)
       }
