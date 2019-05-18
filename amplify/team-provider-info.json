@@ -1,0 +1,21 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "projectgrasshopper-dev-20190506160422-authRole",
+            "UnauthRoleArn": "arn:aws:iam::401355635446:role/projectgrasshopper-dev-20190506160422-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::401355635446:role/projectgrasshopper-dev-20190506160422-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "projectgrasshopper-dev-20190506160422-deployment",
+            "UnauthRoleName": "projectgrasshopper-dev-20190506160422-unauthRole",
+            "StackName": "projectgrasshopper-dev-20190506160422",
+            "StackId": "arn:aws:cloudformation:us-west-2:401355635446:stack/projectgrasshopper-dev-20190506160422/4a755230-7053-11e9-9647-067bdfc711c4"
+        },
+        "categories": {
+            "auth": {
+                "cognitoa99ea618": {
+                    "hostedUIProviderCreds": "[]"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "projectName": "ProjectGrasshopper",
+    "version": "2.0",
+    "frontend": "javascript",
+    "providers": [
+        "awscloudformation"
+    ],
+    "javascript": {
+        "framework": "react-native",
+        "config": {
+            "SourceDir": "/",
+            "DistributionDir": "/",
+            "BuildCommand": "npm run-script build",
+            "StartCommand": "npm run-script start"
+        }
+    }
+}

@@ -1,24 +1,43 @@
-# fit52 Prototype
-Repo for a quick prototype.
+# Project Grasshopper: Mel Edition
 
-We want to have a quick prototype of the core functionality of the fit52 app based on these screens.
-Try to match visual appearance as closely as possible without wasting too much time on tiniest details.
+![Grasshopper Cartoon Image](https://s19532.pcdn.co/wp-content/uploads/2017/05/Screen-Shot-2017-05-19-at-8.51.28-AM-1.png)
 
-![Image of Slides](https://github.com/M56-Studios/fit52-prototype/blob/master/fit52-screens.png)
+### Summary
 
-### Requirements:
-- Header and footer in first screen must not be functional, just visually similar
-- 5 to 10 example workouts in scrollable view as visible in the first screen
-- Click on any workout switches to the workout start screen (screen 2)
-- Screen 2 will show the cards connected to that workout (random 2-12 cards)
-- Click on start on screen 2 will start the workout
-- Workout starts with first of the cards as seen on screen 3
-- Timer starts from 15 minutes down (timer for all cards)
-- Video for that cards auto-plays in the card
-- Swipe will go to next card
-- Stop button on bottom right will stop the exercise and go back to screen 1
-- Strech goal: Pause button, Congrats screen after workout
+This project’s objective is to further the team’s knowledge and experience with mobile app development, React Native and various AWS technologies by making a Todo Application.
 
-### Tools:
-Create a branch with your name and use whatever tool you feel makes sense (React Native, Swift). 
-Get visual elements from Cloris.
+### Application Functionality
+
+The cross-platform (iOS & Android) mobile Todo application will allow users, when authenticated, to create Todo items and to perform CRUD actions (update and delete) on those Todo items. The app should be intuitive and easy to use; if you think of other features or functionality that you believe would maximize users’ experience with the Todo app feel free to add those in!
+
+### User Interface Requirements
+
+- [ ] Authentication flow
+- [ ] Login/ Signup screens
+- [ ] Verification Code screen (after sign up)
+- [ ] Todos List Screen - List out and mark Todos as completed in a FlatList
+- [ ] Todo Creation
+- [ ] Todo Edit (re-use Creation UI?)
+- [ ] Todo Detail Screen (Location? Notes? Priority?)
+- [ ] Profile Screen - photograph(s), biography, Todo Completion Count, etc.
+      \*\* Try to keep UI components as simple as possible and reusable if possible.
+
+### Frontend Technology Requirements
+
+- State management: MST - Use Mobx’s design patterns for accessing/mutating app state (\*\* check out flow (generator) functions for asynchronous model actions)
+  https://github.com/mobxjs/mobx-state-tree
+- Navigation: React Navigation
+  https://github.com/react-navigation/react-navigation
+  \*\* Be sure to keep in mind the user’s potential un-authenticated and authenticated states and how this will affect the app’s navigation stack(s)
+- Authentication: Amplify JS client library (link up with Cognito)
+  https://aws-amplify.github.io/docs/js/authentication
+  \*\* Look to keep clean separations from presentation logic and business logic in your code.
+  This shoud work for both iOS and Android.
+
+### Backend Technology Requirements
+
+- [ ] Authentication: AWS Cognito
+      https://aws.amazon.com/cognito/
+- [ ] Database: AWS AppSync + RDS database
+      https://aws.amazon.com/appsync/
+      https://aws.amazon.com/rds/
