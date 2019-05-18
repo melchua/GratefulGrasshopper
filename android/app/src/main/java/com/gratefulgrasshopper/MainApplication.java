@@ -1,11 +1,10 @@
-package com.projectgrasshopper;
+package com.gratefulgrasshopper;
 
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-import com.amazonaws.RNAWSCognitoPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -26,9 +25,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new AsyncStoragePackage(),
-            new RNAWSCognitoPackage(),
-            new RNGestureHandlerPackage()
+            new RNGestureHandlerPackage(),
+            new AsyncStoragePackage()
       );
     }
 

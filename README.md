@@ -1,25 +1,27 @@
-# Project Grasshopper: Mel Edition
+# The Grateful Grasshopper
+
+## A Drake Street Studios Joint
 
 ![Grasshopper Cartoon Image](https://s19532.pcdn.co/wp-content/uploads/2017/05/Screen-Shot-2017-05-19-at-8.51.28-AM-1.png)
 
 ### Summary
 
-This project’s objective is to further the team’s knowledge and experience with mobile app development, React Native and various AWS technologies by making a Todo Application.
+Our goal is to use new technologies along with React-Native to get an app on the AppStore.
 
 ### Application Functionality
 
-The cross-platform (iOS & Android) mobile Todo application will allow users, when authenticated, to create Todo items and to perform CRUD actions (update and delete) on those Todo items. The app should be intuitive and easy to use; if you think of other features or functionality that you believe would maximize users’ experience with the Todo app feel free to add those in!
+The cross-platform (iOS & Android) mobile Gratitude application will allow users, when authenticated, to create Gratitudes and to perform CRUD actions (update and delete) on those Gratitudes.
 
 ### User Interface Requirements
 
 - [ ] Authentication flow
 - [ ] Login/ Signup screens
 - [ ] Verification Code screen (after sign up)
-- [ ] Todos List Screen - List out and mark Todos as completed in a FlatList
-- [ ] Todo Creation
-- [ ] Todo Edit (re-use Creation UI?)
-- [ ] Todo Detail Screen (Location? Notes? Priority?)
-- [ ] Profile Screen - photograph(s), biography, Todo Completion Count, etc.
+- [ ] Gratitudes List Screen - List out Gratitudes in a FlatList
+- [ ] Gratitude Creation
+- [ ] Gratitude Edit (re-use Creation UI?)
+- [ ] Gratitude Detail Screen (Location? Notes?)
+- [ ] Profile Screen - ?
       \*\* Try to keep UI components as simple as possible and reusable if possible.
 
 ### Frontend Technology Requirements
@@ -33,11 +35,13 @@ The cross-platform (iOS & Android) mobile Todo application will allow users, whe
   https://aws-amplify.github.io/docs/js/authentication
   \*\* Look to keep clean separations from presentation logic and business logic in your code.
   This shoud work for both iOS and Android.
+- UI Framework: NativeBase
+  https://nativebase.io
 
 ### Backend Technology Requirements
 
 - [ ] Authentication: AWS Cognito
       https://aws.amazon.com/cognito/
-- [ ] Database: AWS AppSync + RDS database
+- [ ] Database: AWS AppSync + Dynamo database
       https://aws.amazon.com/appsync/
-      https://aws.amazon.com/rds/
+      https://aws.amazon.com/dynamodb/
